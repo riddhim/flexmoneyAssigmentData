@@ -10,6 +10,7 @@ WORKDIR /app
 
 # Copy the backend application JAR file
 COPY backend/build/libs/backend.jar .
+COPY backend/build/libs/backend.jar /var/www/backend/
 
 # Copy the frontend application
 COPY frontend/index.html /var/www/html/
@@ -33,4 +34,4 @@ RUN echo "    }" >> /etc/nginx/sites-available/default
 RUN echo "}" >> /etc/nginx/sites-available/default
 
 # Start the backend and Nginx
-CMD java -jar /app/backend.jar & nginx -g 'daemon off;'
+CMD java -jar /var/www/backend/backend.jar & nginx -g 'daemon off;'
